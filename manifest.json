@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Team-GPT Chat Downloader",
+  "version": "1.0",
+  "description": "Download Team-GPT chats as markdown files",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "downloads",
+    "tabs",
+    "webRequest"
+  ],
+  "host_permissions": [
+    "*://app.team-gpt.com/*",
+    "*://*.bing.com/*",
+    "*://platform.openai.com/playground/*"
+  ],
+  "action": {
+    "default_title": "Download Chat"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [{
+    "matches": [
+      "*://app.team-gpt.com/*",
+      "*://platform.openai.com/playground/*"
+    ],
+    "js": ["content.js"],
+    "run_at": "document_end"
+  }]
+}
